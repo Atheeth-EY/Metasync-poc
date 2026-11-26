@@ -6,7 +6,7 @@ columns:
   customer_id:
     type: STRING
     description: Unique customer identifier
-  customer_status:
+  lifecycle_status:
     type: STRING
     description: Lifecycle state of the customer
     allowed_values: [ACTIVE, DORMANT, CLOSED]
@@ -17,5 +17,5 @@ kpis:
   active_customer_count:
     description: Number of customers currently active
     expression: COUNT(DISTINCT customer_id)
-    filter: customer_status = 'ACTIVE'
+    filter: lifecycle_status = 'ACTIVE'
     owner: customer-data-team
