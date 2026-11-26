@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC ## Build customer_profile
 # MAGIC Writes `learning.atheeth_metasync_demo.customer_profile` from fake source data.
-# MAGIC Output columns: customer_id, full_name, customer_status, signup_date.
+# MAGIC Output columns: customer_id, full_name, lifecycle_status, signup_date.
 
 # COMMAND ----------
 
@@ -26,7 +26,7 @@ customer_profile = raw_customers.select(
     F.when(F.col("status_code") == "A", "ACTIVE")
     .when(F.col("status_code") == "D", "DORMANT")
     .otherwise("CLOSED")
-    .alias("customer_status"),
+    .alias("lifecycle_status"),
     F.to_date("signup_date").alias("signup_date"),
 )
 
