@@ -1,0 +1,21 @@
+version: 1
+entity: customer
+owner: customer-data-team
+source_table: learning.atheeth_metasync_demo.customer_profile
+columns:
+  customer_id:
+    type: STRING
+    description: Unique customer identifier
+  customer_status:
+    type: STRING
+    description: Lifecycle state of the customer
+    allowed_values: [ACTIVE, DORMANT, CLOSED]
+  signup_date:
+    type: DATE
+    description: Date the customer signed up
+kpis:
+  active_customer_count:
+    description: Number of customers currently active
+    expression: COUNT(DISTINCT customer_id)
+    filter: customer_status = 'ACTIVE'
+    owner: customer-data-team
